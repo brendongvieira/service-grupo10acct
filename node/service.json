@@ -5,9 +5,23 @@
   "minReplicas": 2,
   "maxReplicas": 4,
   "workers": 1,
+  "events": {
+    "allStates": {
+    "sender": "vtex.orders-broadcast",
+    "topics": ["order-status-updated"]
+  },
+  "someStates": {
+    "sender": "vtex.orders-broadcast",
+    "topics": ["cancel", "order-created"]
+  }
+},
   "routes": {
-    "status": {
-      "path": "/_v/status/:code",
+    "leads": {
+      "path": "/leads",
+      "public": true
+    },
+    "updateLeads": {
+      "path": "/update-leads/:code",
       "public": true
     }
   }

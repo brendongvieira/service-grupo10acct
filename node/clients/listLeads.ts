@@ -1,14 +1,17 @@
 import type { InstanceOptions, IOContext, IOResponse } from '@vtex/api'
 import { ExternalClient } from '@vtex/api'
 
-export default class Status extends ExternalClient {
+export default class listLeads extends ExternalClient {
+  private routes = {
+     leads: '/prod/leads'
+  }
   constructor(context: IOContext, options?: InstanceOptions) {
-    super('http://httpstat.us', context, options)
+    super('https://4wnkgl4pyd.execute-api.sa-east-1.amazonaws.com', context, options)
   }
 
-  public async getStatus(status: number): Promise<string> {
-    return this.http.get(status.toString(), {
-      metric: 'status-get',
+  public async getLeads(): Promise<string> {
+    return this.http.get(this.routes.leads, {
+      metric: 'leads-get',
     })
   }
 
