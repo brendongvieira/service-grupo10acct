@@ -1,6 +1,6 @@
 {
-  "name": "service-example",
-  "vendor": "vtex",
+  "name": "acctgrupo10",
+  "vendor": "hiringcoders202110",
   "version": "0.0.1",
   "title": "Service Grupo10",
   "description": "Reference app for VTEX IO Services",
@@ -33,9 +33,12 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "hiringcoders202110.vtexcommercestable.com.br",
+        "host": "portal.vtexcommercestable.com.br",
         "path": "/api/oms/*"
       }
+    },
+    {
+      "name": "OMSViewer"
     },
     {
       "name": "outbound-access",

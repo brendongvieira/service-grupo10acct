@@ -8,9 +8,9 @@
   "events": {
     "allStates": {
     "sender": "vtex.orders-broadcast",
-    "topics": ["order-status-updated"]
+    "topics": ["order-created"]
   },
-  "someStates": {
+  "updateLeads": {
     "sender": "vtex.orders-broadcast",
     "topics": ["cancel", "order-created"]
   }

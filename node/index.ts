@@ -1,5 +1,7 @@
-import type { ClientsConfig, ServiceContext, RecorderState } from '@vtex/api'
+import type { ClientsConfig, ServiceContext, RecorderState, EventContext } from '@vtex/api'
 import { LRUCache, method, Service } from '@vtex/api'
+// import { StatusChangeContext } from '@vtex/api'
+import { allStates } from './middlewares/ordersReceived'
 
 import { Clients } from './clients'
 import { listLeads } from './middlewares/listLeads'
@@ -39,11 +41,25 @@ declare global {
   interface State extends RecorderState {
     code: number
   }
+  interface StatusChangeContext extends EventContext<Clients> {
+    body: {
+      domain: string
+      orderId: string
+      currentState: string
+      lastState: string
+      currentChangeDate: string
+      lastChangeDate: string
+    }
+  }
 }
+
 
 // Export a service that defines route handlers and client options.
 export default new Service({
   clients,
+  events: {
+    allStates
+  },
   routes: {
     // `status` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
     leads: method({
